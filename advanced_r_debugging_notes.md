@@ -6,6 +6,100 @@
 
 Advanced R dedicates Chapter 22 to debugging, providing a comprehensive guide to finding and fixing bugs in R code. The book emphasizes that debugging is both an art and science, requiring systematic approaches and the right tools.
 
+## Complete Package Reference: All Debugging & Analysis Tools in Advanced R
+
+### Core Debugging Packages
+- **`rlang`**: Enhanced condition handling and error tracing
+  - `with_abort()`: Capture errors with better call tree visualization  
+  - `last_trace()`: Show hierarchical error traces
+  - `trace_back()`: Programmatic trace generation
+  - `abort()`: Enhanced error throwing with structured conditions
+
+- **`errorist`**: Automated web search for error messages
+  - Automatically opens browser with Google search of error messages
+  - Removes code-specific details for better search results
+
+- **`searcher`**: Manual error searching functionality  
+  - `search_*()` functions for manual error lookups
+  - Supports multiple search engines and R-specific sites
+
+### Memory Analysis & Profiling Packages
+
+#### Current/Modern Tools
+- **`lobstr`**: Modern memory profiling and object inspection
+  - `obj_size()`: Calculate object sizes accounting for shared references
+  - `mem_used()`: Total memory usage by R session
+  - `obj_addr()`: Find memory addresses of objects  
+  - `ref()`: Display reference trees showing object relationships
+  - `ast()`: Display abstract syntax trees
+  - `cst()`: Call stack trees
+
+- **`profvis`**: Interactive profiling visualization (current standard)
+  - Flame graphs showing call stack over time
+  - Source code annotation with timing and memory data
+  - Memory allocation and release tracking
+  - RStudio integration with interactive exploration
+  - HTML output for sharing results
+
+#### Legacy Tools (from older editions)
+- **`pryr`**: Memory profiling utilities (largely replaced by lobstr)
+  - `object_size()`: Object size calculation
+  - `mem_used()`, `mem_change()`: Memory tracking
+  - `address()`, `refs()`: Memory location and reference counting
+  - `tracemem()` integration
+
+- **`lineprof`**: Line-by-line memory profiling (deprecated, replaced by profvis)
+  - Memory allocation per line of code
+  - Integration with shiny for interactive exploration
+
+### Performance & Benchmarking Packages
+
+#### Modern Benchmarking
+- **`bench`**: Modern microbenchmarking (current standard)
+  - `mark()`: High precision timing with memory allocation tracking
+  - Automatic garbage collection analysis
+  - Built-in statistical analysis of timing results
+  - Memory profiling integration
+
+#### Traditional Benchmarking  
+- **`microbenchmark`**: Traditional microbenchmarking package
+  - `microbenchmark()`: Function timing comparisons
+  - Statistical summary of multiple runs
+  - Support for different time units
+
+### Parallel Computing & Process Management
+- **`parallel`**: Base R parallel computing
+  - `mclapply()`: Multicore parallel processing (Unix/Mac)
+  - `parLapply()`: Cluster parallel processing (cross-platform)  
+  - `detectCores()`: System core detection
+  - `makePSOCKcluster()`: Create process clusters
+
+- **`callr`**: Run R processes in isolation
+  - `r()`: Execute functions in fresh R sessions
+  - Useful for reproducing non-interactive debugging issues
+  - Clean environment testing
+
+### Base R Profiling Tools
+- **`utils::Rprof()`**: Base R statistical profiler
+  - Memory and time profiling
+  - Raw profiling data collection
+  - Used by other profiling packages as foundation
+
+- **`utils::summaryRprof()`**: Summarize Rprof output
+  - Basic profiling summaries
+  - Less user-friendly than modern alternatives
+
+### Build & Development Tools
+- **`compiler`**: Byte code compilation for performance
+  - `cmpfun()`: Compile functions to byte code
+  - Automatic compilation in newer R versions
+
+### Error Search Integration
+The book specifically mentions automated error searching:
+- **Web-based error lookup**: Both `errorist` and `searcher` help automate the first debugging step
+- **Search engine integration**: Direct browser opening with properly formatted queries
+- **R-specific search sites**: Integration with R-focused search engines and Stack Overflow
+
 ## General Debugging Strategy (22.2)
 
 The book outlines a four-step debugging process:
